@@ -1,7 +1,9 @@
-<!--DOCTYPE html -->
-<!DOCTYPE html>
-<html>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
+
+{{ block.super }}
+
 Form<br/><br/>
 
 <form method='POST' action=''>{% csrf_token %}
@@ -9,5 +11,4 @@ Form<br/><br/>
 <input type="submit" value="Create Post" />
 </form>
 
-</body>
-</html>
+{% endblock content %}
