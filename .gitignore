@@ -10,6 +10,8 @@ local_settings.py
 db.sqlite3
 media
 
+static_cdn/
+media_cdn/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
