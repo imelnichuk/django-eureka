@@ -11,6 +11,10 @@
   {% endif %}
 <h1>{{ title }} <small>{{ instance.timestamp }}</small></h1>
 
+{% if instance.user.get_full_name %}
+  <p>Author: {{ instance.user.get_full_name }}</p>
+{% endif %}
+
 <!-- share_string == instance.content|urlify -->
 
 <div id="share-links-container">

@@ -10,7 +10,7 @@ except:
 
 from django import template
 
-register = template.library()
+register = template.Library()
 
 @register.filter
 def urlify(value):
