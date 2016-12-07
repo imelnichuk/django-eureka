@@ -1,3 +1,16 @@
 h1 {
-    color: #0000ff;
+    color: #2F2E7B;
+}
+
+img.share-logo {
+    display: inline;
+    margin: 0 5px;
+    width: 29px;
+    height: 29px;
+
+}
+
+#share-links-container {
+    display: inline-block;
+    float: right;
 }
