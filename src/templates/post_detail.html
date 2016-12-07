@@ -15,6 +15,9 @@
   <p>Author: {{ instance.user.get_full_name }}</p>
 {% endif %}
 
+<!-- https://developers.facebook.com/docs/plugins/like-button -->
+<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false"></div>
+
 <!-- share_string == instance.content|urlify -->
 
 <div id="share-links-container">
@@ -38,7 +41,18 @@
 <br>
 <hr/>
 
+<div class="row">
+
+  <div class="col-sm-12">
+
 {{ instance.content|linebreaks }}<br/>
+
+    <hr/>
+    <br/>
+<!-- https://developers.facebook.com/docs/plugins/comments -->
+    <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
+  </div>
+</div>
 
 </div>
 {% endblock content%}
