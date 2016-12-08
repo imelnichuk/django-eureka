@@ -2,6 +2,10 @@ h1 {
     color: #2F2E7B;
 }
 
+.red {
+    color: red;
+}
+
 img.share-logo {
     display: inline;
     margin: 0 5px;

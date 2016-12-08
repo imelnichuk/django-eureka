@@ -12,12 +12,16 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
 
 from .forms import PostForm
 from .models import Post
 
 def post_list(request):
-    queryset_list = Post.objects.all() #.order_by("-timestamp")
+    today = timezone.now().date()
+    queryset_list = Post.objects.active()
+    if request.user.is_staff or request.user.is_superuser:
+        queryset_list = Post.objects.all()
     paginator = Paginator(queryset_list, 5) # Show N contacts per page
 
     page_request_var = "page"
@@ -35,11 +39,15 @@ def post_list(request):
         "title": "List",
         "object_list": queryset,
         "page_request_var": page_request_var,
+        "today": today,
     }
     return render(request, 'post_list.html', context)
 
 def post_detail(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
+    if instance.draft or instance.publish > timezone.now().date():
+        if not request.user.is_staff and not request.user.is_superuser:
+            raise Http404
     share_string = quote_plus(instance.content)
     context = {
         "title": "Detail",
